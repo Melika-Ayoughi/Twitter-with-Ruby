@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20170601083030) do
 
-  create_table "follows", force: :cascade do |t|
-    t.integer  "follower_id"
-    t.integer  "following_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "followships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "following_id"
@@ -33,17 +26,5 @@ ActiveRecord::Schema.define(version: 20170601083030) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "username"
-    t.string   "password"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
