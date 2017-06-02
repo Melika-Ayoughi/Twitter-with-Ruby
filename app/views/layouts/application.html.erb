@@ -39,13 +39,9 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">Twitter</a>
-      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-      <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
     </div>
     <div class="collapse navbar-collapse">
-      <!--<ul class="nav navbar-nav">-->
-        <!--<%= favicon_link_tag 'favicon.ico' %>-->
-      <!--</ul>-->
 
       <p class="navbar-text pull-right">
         <% if user_signed_in? %>
@@ -56,6 +52,8 @@
             <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
             <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
         <% end %>
+        <%= link_to(image_tag("Twitterlogo.png" , id:"logosT" , :size => '60x40', :style=>"padding-top: 8px; padding-right:5px; padding-left:8px;"),  class: 'navbar-brand' ) %>
+
       </p>
     </div>
   </div>
