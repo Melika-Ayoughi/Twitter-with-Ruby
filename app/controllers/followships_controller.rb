@@ -24,9 +24,7 @@ class FollowshipsController < ApplicationController
   # POST /followships
   # POST /followships.json
   def create
-    @followship = Followship.new(followship_params)
-
-    # @tweet = Tweet.create(:user_id => current_user.id, :text => tweet_params[:text])
+    @followship = Followship.create(:follower_id => current_user.id, :following_id => followship_params[:following_id])
 
     respond_to do |format|
       if @followship.save

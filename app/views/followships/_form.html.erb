@@ -12,12 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :follower_id %><br>
-    <%= f.number_field :follower_id %>
-  </div>
-  <div class="field">
     <%= f.label :following_id %><br>
-    <%= f.number_field :following_id %>
+    <%  @friendship_opportunities = []
+        friends = []
+        blockeds = []
+        blockings = []
+        for followship in current_user.followingships
+          friends.append(followship.following)
+        end
+        for user in User.all
+          if not(friends.include?(user) or blockeds.include?(user) or blockings.include?(user) or user == current_user)
+            @friendship_opportunities.append(user)
+          end
+        end
+    %>
+    <%= f.select :following_id, options_for_select(@friendship_opportunities.map{|user| ["#{user.email}", user.id]}) %>
   </div>
   <div class="actions">
     <%= f.submit %>
