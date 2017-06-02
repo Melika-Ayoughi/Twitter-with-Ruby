@@ -73,6 +73,19 @@ class TweetsController < ApplicationController
     end
   end
 
+  def show_username_tweets
+    # exists = false;
+    # for followship in current_user.followingships
+    #   if followship.following.email == params[:username]
+    #     exists = true;
+    #   end
+    # end
+
+    @tweets = User.find_by_email(params[:username]+'@gmail.com').tweets
+    print params[:username]
+    print '================================================'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet

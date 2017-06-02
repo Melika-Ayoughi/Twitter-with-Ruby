@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :friends
 
   root 'tweets#show_friends_tweets'
+  # get '/:username' => 'tweets#show_username_tweets'
 
-  # get '/' => 'tweet#view'
-  # get '/patients/:id', to: 'patients#show'
+  get ':username' => 'tweets#show_username_tweets',:as =>'username'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
