@@ -61,6 +61,18 @@ class TweetsController < ApplicationController
     end
   end
 
+  def show_friends_tweets
+    @user_tweets = []
+    tweets = []
+    for followship in current_user.followingships
+      tweets.concat(followship.following.tweets)
+    end
+    sorted_tweets = tweets.sort_by &:created_at
+    sorted_tweets.each do |tweet|
+      @user_tweets.append({:user => User.find(tweet.user_id), :tweet => tweet})
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
