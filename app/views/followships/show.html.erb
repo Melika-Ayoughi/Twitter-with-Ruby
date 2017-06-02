@@ -2,12 +2,12 @@
 
 <p>
   <strong>Follower:</strong>
-  <%= @followship.follower_id %>
+  <%= @followship.follower.email %>
 </p>
 
 <p>
   <strong>Following:</strong>
-  <%= @followship.following_id %>
+  <%= @followship.following.email %>
 </p>
 
 <%= link_to 'Edit', edit_followship_path(@followship) %> |

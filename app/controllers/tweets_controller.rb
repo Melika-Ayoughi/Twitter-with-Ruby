@@ -67,7 +67,7 @@ class TweetsController < ApplicationController
     for followship in current_user.followingships
       tweets.concat(followship.following.tweets)
     end
-    sorted_tweets = tweets.sort_by! &:created_at
+    sorted_tweets = tweets.sort_by{|tweet| tweet[:created_at]}.reverse
     # sorted_tweets = tweets.order('created_at DESC')
     sorted_tweets.each do |tweet|
       @user_tweets.append({:user => User.find(tweet.user_id), :tweet => tweet})
@@ -81,7 +81,6 @@ class TweetsController < ApplicationController
         exists = true;
       end
     end
-
     if exists == true
       all_tweets = User.find_by_email(params[:username]+'@gmail.com').tweets
       all_tweets = all_tweets.order('created_at DESC')

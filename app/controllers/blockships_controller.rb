@@ -1,5 +1,5 @@
 class BlockshipsController < ApplicationController
-  before_action :set_blockship, only: [:show, :edit, :update, :destroy]
+  before_action :set_blockship, only: [:show, :destroy]
 
   # GET /blockships
   # GET /blockships.json
@@ -15,10 +15,6 @@ class BlockshipsController < ApplicationController
   # GET /blockships/new
   def new
     @blockship = Blockship.new
-  end
-
-  # GET /blockships/1/edit
-  def edit
   end
 
   # POST /blockships
@@ -45,20 +41,6 @@ class BlockshipsController < ApplicationController
         format.json { render :show, status: :created, location: @blockship }
       else
         format.html { render :new }
-        format.json { render json: @blockship.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /blockships/1
-  # PATCH/PUT /blockships/1.json
-  def update
-    respond_to do |format|
-      if @blockship.update(blockship_params)
-        format.html { redirect_to @blockship, notice: 'Blockship was successfully updated.' }
-        format.json { render :show, status: :ok, location: @blockship }
-      else
-        format.html { render :edit }
         format.json { render json: @blockship.errors, status: :unprocessable_entity }
       end
     end

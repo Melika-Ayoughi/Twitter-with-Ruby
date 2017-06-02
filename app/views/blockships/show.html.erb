@@ -2,12 +2,12 @@
 
 <p>
   <strong>Blocker:</strong>
-  <%= @blockship.blocker_id %>
+  <%= @blockship.blocker.email %>
 </p>
 
 <p>
   <strong>Blocked:</strong>
-  <%= @blockship.blocked_id %>
+  <%= @blockship.blocked.email %>
 </p>
 
 <%= link_to 'Edit', edit_blockship_path(@blockship) %> |

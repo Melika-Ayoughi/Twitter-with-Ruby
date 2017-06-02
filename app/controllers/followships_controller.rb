@@ -1,5 +1,5 @@
 class FollowshipsController < ApplicationController
-  before_action :set_followship, only: [:show, :edit, :update, :destroy]
+  before_action :set_followship, only: [:show, :destroy]
 
   # GET /followships
   # GET /followships.json
@@ -18,10 +18,6 @@ class FollowshipsController < ApplicationController
     @followship = Followship.new
   end
 
-  # GET /followships/1/edit
-  def edit
-  end
-
   # POST /followships
   # POST /followships.json
   def create
@@ -33,20 +29,6 @@ class FollowshipsController < ApplicationController
         format.json { render :show, status: :created, location: @followship }
       else
         format.html { render :new }
-        format.json { render json: @followship.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /followships/1
-  # PATCH/PUT /followships/1.json
-  def update
-    respond_to do |format|
-      if @followship.update(followship_params)
-        format.html { redirect_to @followship, notice: 'Followship was successfully updated.' }
-        format.json { render :show, status: :ok, location: @followship }
-      else
-        format.html { render :edit }
         format.json { render json: @followship.errors, status: :unprocessable_entity }
       end
     end
