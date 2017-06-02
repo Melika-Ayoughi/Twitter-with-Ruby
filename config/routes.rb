@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :blockships
   devise_for :users
   resources :followships
   resources :tweets

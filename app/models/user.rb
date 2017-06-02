@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
   has_many :followingships, :class_name => "Followship", :foreign_key => "follower_id"
   has_many :followings, :through => :followingships, :source => :user
 
+  has_many :blockerships, :class_name => "Blockship", :foreign_key => "blocked_id"
+  has_many :blockers, :through => :blockerships, :source => :user
+  has_many :blockedships, :class_name => "Blockship", :foreign_key => "blocker_id"
+  has_many :blockeds, :through => :blockedships, :source => :user
+
 end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Blocker:</strong>
+  <%= @blockship.blocker_id %>
+</p>
+
+<p>
+  <strong>Blocked:</strong>
+  <%= @blockship.blocked_id %>
+</p>
+
+<%= link_to 'Edit', edit_blockship_path(@blockship) %> |
+<%= link_to 'Back', blockships_path %>
