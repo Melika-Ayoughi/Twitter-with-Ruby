@@ -67,23 +67,29 @@ class TweetsController < ApplicationController
     for followship in current_user.followingships
       tweets.concat(followship.following.tweets)
     end
-    sorted_tweets = tweets.sort_by &:created_at
+    sorted_tweets = tweets.sort_by! &:created_at
+    # sorted_tweets = tweets.order('created_at DESC')
     sorted_tweets.each do |tweet|
       @user_tweets.append({:user => User.find(tweet.user_id), :tweet => tweet})
     end
   end
 
   def show_username_tweets
-    # exists = false;
-    # for followship in current_user.followingships
-    #   if followship.following.email == params[:username]
-    #     exists = true;
-    #   end
-    # end
+    exists = false;
+    for followship in current_user.followingships
+      if followship.following.email == params[:username]+'@gmail.com'
+        exists = true;
+      end
+    end
 
-    @tweets = User.find_by_email(params[:username]+'@gmail.com').tweets
-    print params[:username]
-    print '================================================'
+    if exists == true
+      all_tweets = User.find_by_email(params[:username]+'@gmail.com').tweets
+      all_tweets = all_tweets.order('created_at DESC')
+      @return_value = {:is_valid => 'allowed', :tweets => all_tweets}
+    else
+      all_tweets = []
+      @return_value = {:is_valid => 'not allowed', :tweets => all_tweets}
+    end
   end
 
   private

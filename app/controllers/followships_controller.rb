@@ -26,6 +26,8 @@ class FollowshipsController < ApplicationController
   def create
     @followship = Followship.new(followship_params)
 
+    # @tweet = Tweet.create(:user_id => current_user.id, :text => tweet_params[:text])
+
     respond_to do |format|
       if @followship.save
         format.html { redirect_to @followship, notice: 'Followship was successfully created.' }
