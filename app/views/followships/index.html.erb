@@ -1,6 +1,6 @@
 
 
-<h1>Listing Followships</h1>
+<h1>Listing My Followings</h1>
 
 <table>
   <thead>
@@ -14,11 +14,9 @@
   <tbody>
     <% @followships.each do |followship| %>
       <tr>
-        <td><%= followship.follower_id %></td>
-        <td><%= followship.following_id %></td>
-        <td><%= link_to 'Show', followship %></td>
-        <td><%= link_to 'Edit', edit_followship_path(followship) %></td>
-        <td><%= link_to 'Destroy', followship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= followship.follower.email %></td>
+        <td><%= followship.following.email %></td>
+        <td><%= link_to 'Unfollow', followship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

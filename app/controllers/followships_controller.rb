@@ -4,7 +4,8 @@ class FollowshipsController < ApplicationController
   # GET /followships
   # GET /followships.json
   def index
-    @followships = Followship.all
+    # arr.each_index.select{|i| arr[i] == 'x'}
+    @followships = Followship.select{|followship| followship.follower_id == current_user.id}
   end
 
   # GET /followships/1
@@ -56,7 +57,7 @@ class FollowshipsController < ApplicationController
   def destroy
     @followship.destroy
     respond_to do |format|
-      format.html { redirect_to followships_url, notice: 'Followship was successfully destroyed.' }
+      format.html { redirect_to followships_url, notice: 'Followship was successfully unfollowed.' }
       format.json { head :no_content }
     end
   end
