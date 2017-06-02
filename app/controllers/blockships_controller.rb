@@ -14,6 +14,15 @@ class BlockshipsController < ApplicationController
 
   # GET /blockships/new
   def new
+    @blockship_opportunities, blockeds = [], []
+    for blockship in current_user.blockedships
+      blockeds.append(blockship.blocked)
+    end
+    for user in User.all
+      if not(blockeds.include?(user) or user == current_user)
+        @blockship_opportunities.append(user)
+      end
+    end
     @blockship = Blockship.new
   end
 

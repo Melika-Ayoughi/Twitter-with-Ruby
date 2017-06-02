@@ -15,6 +15,21 @@ class FollowshipsController < ApplicationController
 
   # GET /followships/new
   def new
+    @friendship_opportunities, friends, blockers, blockeds = [], [], [], []
+    for followship in current_user.followingships
+      friends.append(followship.following)
+    end
+    for blockship in current_user.blockerships
+      blockers.append(blockship.blocker)
+    end
+    for blockship in current_user.blockedships
+      blockeds.append(blockship.blocked)
+    end
+    for user in User.all
+      if not(friends.include?(user) or blockeds.include?(user) or blockers.include?(user) or user == current_user)
+        @friendship_opportunities.append(user)
+      end
+    end
     @followship = Followship.new
   end
 

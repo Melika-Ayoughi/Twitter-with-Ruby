@@ -13,17 +13,6 @@
 
   <div class="field">
     <%= f.label :blocked_id %><br>
-    <%  @blockship_opportunities = []
-        blockeds = []
-        for blockship in current_user.blockedships
-          blockeds.append(blockship.blocked)
-        end
-        for user in User.all
-          if not(blockeds.include?(user) or user == current_user)
-            @blockship_opportunities.append(user)
-          end
-        end
-    %>
     <%= f.select :blocked_id, options_for_select(@blockship_opportunities.select{|user| user.id != current_user.id}.map{|user| ["#{user.email}", user.id]}) %>
   </div>
   <div class="actions">
